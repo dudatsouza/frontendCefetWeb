@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
+    <script src='../main.js'></script>
+    <title>Deletar o Perfil do Cliente</title>
+</head>
+
+<body>
+
+    <div id="cabecalho">
+        <div class="inicio">
+            <li><a href="../index.html">PROJETO</a></li>
+        </div>	
+    
+        <div id="div-reta"></div>
+    
+        <div class = "start">
+            <span id="card-clientes"></span>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script>
+                var url_string = window.location.href;
+                var url = new URL(url_string);
+                var id = url.searchParams.get("id_cliente");
+
+                var deletarCliente = url.searchParams.get("delete");
+
+                console.log("Delete", deletarCliente)
+                if(deletarCliente && deletarCliente === "ok"){
+                    axios.post("http://localhost:3010/cliente_del/" + id)
+                    .then(res => {
+                        alert("Cliente Apagado com sucesso!")
+                        window.location.href = "listarClientes.html"
+                    })
+                }
+
+                else {
+                    axios.get(`http://localhost:3010/cliente/${+id}`).then(res => {
+                    var card = '<div class="cardezinho card mb-3">';
+                            card += '<div class="row g-0">' +
+                                        '<div class="col-md-4">' +
+                                            `<img src="http://localhost:3010/clientes/${+id}.png" class="img-fluid rounded-start">` +         
+                                        "</div>" +
+                                        '<div class="col-md-8">' +
+                                            `<div class="card-body">`;
+                                                card += `<div class="escrito1 card-title"><b>${res.data.nome} ${res.data.sobrenome}</b>`;
+                                                card += `<div class="escrito2 card-text">Email: <div class="escrito3 card-text">${res.data.email}</div></div>`;
+                                                card += `<div class="escrito2 card-text">Salario: <div class="escrito3 card-text">${res.data.salario}</div></div>`;
+                                                card += `<div class="escrito2 card-text">Data de Cadastro: <div class="escrito3 card-text">${res.data.data_cadastro}</div></div>`;
+                                                card += `<a href="deletarClientes.html?id_cliente=${id}&delete=ok" id="button3" list-group-item list-group-item-action active>Deletar</a>`;
+                                            card += "</div>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>";
+                    document.getElementById(`card-clientes`).innerHTML = card;
+                })
+                }
+            </script>
+        </div>
+    </div>
+
+</body>
+
+</html>

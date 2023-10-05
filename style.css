@@ -40,9 +40,9 @@ html, body {
 	background: none;
 	border: 1px solid white;
 	border-radius: 10px;
-	outline: none;
 	width: 300px;
 	color: white;
+	text-align: center;
 }
 
 .cabecalho {
@@ -64,6 +64,13 @@ html, body {
 .inicio li a {
 	text-decoration: none;
 	color: white;
+}
+
+.inicio  a{
+	text-decoration: none;
+	color: white;
+	padding: 16px 0;
+	list-style: none;
 }
 
 #div-reta {
@@ -123,7 +130,7 @@ html, body {
 
 .escrito2 {
 	color: #97c9e8;
-	font-size: 50px;	
+	font-size: 30px;	
 	position: relative;	
 }
 
@@ -131,12 +138,23 @@ html, body {
 	color: #639fff;
 }
 
+.escrito3 {
+	color: #9f9da1;
+	font-size: 20px;	
+	position: relative;	
+	display: inline;
+}
+
+.escrito3:hover { 
+	color: #c2c0c4;
+}
+
 #button {
 	position: absolute;
 	left: 150px;
 	border: 1px solid white;
 	border-radius: 15px;
-	width: 120px;
+	width: 140px;
 	padding: 8px;
 	color: #e0e1ff;
 	font-size: 12px;
@@ -155,6 +173,30 @@ html, body {
 	top: 415px;
 }
 
+.button3 {
+	top: 460px;
+}
+
+.button4 {
+	top: 505px;
+}
+
+
+#button3 {
+	border: 1px solid white;
+	border-radius: 15px;
+	padding: 6px;
+	width: 50px;
+	color: #e0e1ff;
+	font-size: 10px;
+	text-align: center;
+}
+
+#button3:hover {
+	border: 1px solid #9f9da1;
+	color: #9f9da1;
+}
+
 .tabela {
     --bs-table-color: #fff;
     --bs-table-bg: #000000;
@@ -170,7 +212,7 @@ html, body {
 	width: 1130px;
 	height: 500px;
 	margin-top: 60px;
-	margin-left: 100px;
+	margin-left: 50px;
 	position: absolute;
 	border-radius: 50px;
     left: 50px;
@@ -180,4 +222,60 @@ html, body {
 .cabTabela {
     --bs-table-color: #97c9e8;
     font-size: 20px;
+}
+
+.avatar  {	
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid white;
+	outline: none;
+	color: #9f9da1;
+}
+
+.logomarca  {	
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid white;
+	outline: none;
+	color: #9f9da1;
+}
+  
+::file-selector-button {
+	font: inherit;
+	background: #111111;
+	color: #9f9da1;
+	border-color: white;
+	
+}
+
+.cardezinho {
+	width: 1130px;
+	height: 500px;
+	margin-top: 200px;
+	margin-left: 200px;
+	background: none;
+}
+
+.formulario-up {
+    color: white;
+    display: absolute;
+	background: none;
+	width: 1130px;
+	height: 500px;
+	margin-top: 50px;
+	margin-left: 700px;
+	position: absolute;
+	border-radius: 50px;
+	color: #e0e1ff;
+    left: 50px;
+	top: 30px;
+	font-size: 15px;	
+}
+
+.cardezinho-up {
+	width: 700px;
+	height: 300px;
+	margin-top: 100px;
+	margin-left: 100px;
+	background: none;
 }
