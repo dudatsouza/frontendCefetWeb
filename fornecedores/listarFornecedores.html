@@ -22,6 +22,15 @@
     <div class = "start">
         <div class = "listagem inicio">
             <div class = "escrito1"><b>LISTA DE FORNECEDORES</b></div>
+            <div class="cadastrarf">
+                <a id="button1" class="link1 icon-link icon-link-hover" href="./cadastrarFornecedores.html">
+                    <b>CADASTRAR NOVO FORNECEDOR</b>
+                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                     </svg>
+                </a>
+            </div>
+
             <span id="tabela-fornecedores"></span>
             
             <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -51,7 +60,7 @@
                         tabela += `<td>${element.logradouro}</td>`;
                         tabela += `<td>${element.cidade}</td>`;
                         tabela += `<td>${element.uf}</td>`;
-                        tabela += `<td><a href="perfilFornecedores.html?id_fornecedor=${element.id_fornecedor}" id="button3" list-group-item list-group-item-action active">Ver</a>` +
+                        tabela += `<td style='text-align: center' scope='col'><a href="perfilFornecedores.html?id_fornecedor=${element.id_fornecedor}" id="button3" list-group-item list-group-item-action active">Ver</a>` +
                                   `<a href="deletarFornecedores.html?id_fornecedor=${element.id_fornecedor}&delete="nao" id="button3" list-group-item list-group-item-action active">Delete</a>` +
                                   `<a href="updateFornecedores.html?id_fornecedor=${element.id_fornecedor}&razao=${element.razao}&cpf_cnpj=${element.cpf_cnpj}&contato=${element.contato}&logradouro=${element.logradouro}&cidade=${element.cidade}&uf=${element.uf}" id="button3" list-group-item list-group-item-action active">Alterar</a></td>`;
                         tabela += "</tr>";

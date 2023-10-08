@@ -11,48 +11,44 @@
     <title>Perfil do Fornecedor</title>
 </head>
 
+
 <body>
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>	
 
-    <div id="cabecalho">
-            <div class="inicio">
-                <li><a href="../index.html">PROJETO</a></li>
-            </div>	
-    
-        <div id="div-reta"></div>
-    
-        <div class = "start">
-            <span id="card-fornecedores"></span>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var id = url.searchParams.get("id_fornecedor");
-                
-                axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
-                    var card = '<div class="cardezinho card mb-3">';
-                            card += '<div class="row g-0">' +
-                                        '<div class="col-md-4">' +
-                                            `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
-                                        "</div>" +
-                                        '<div class="col-md-8">' +
-                                            `<div class="card-body">`;
-                                                card += `<div class="escrito1 card-title"><b>${res.data.razao}</b>`;
-                                                card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
-                                                card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
-                                    card += "</div>" +
-                                        "</div>" +
+    <div id="div-reta"></div>
+
+    <div class = "start">
+        <span id="card-fornecedores"></span>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id_fornecedor");
+            
+            axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
+                var card = '<div class="cardezinho card mb-3">';
+                        card += '<div class="row g-0">' +
+                                    '<div class="col-md-4">' +
+                                        `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
                                     "</div>" +
-                                "</div>";
-                    document.getElementById(`card-fornecedores`).innerHTML = card;
-                })
-            </script>
-        </div>
+                                    '<div class="col-md-8">' +
+                                        `<div class="card-body">`;
+                                            card += `<div class="escrito1 card-title"><b>${res.data.razao}</b>`;
+                                            card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
+                                            card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
+                                card += "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+                document.getElementById(`card-fornecedores`).innerHTML = card;
+            })
+        </script>
     </div>
-
-
 </body>
 
 </html>

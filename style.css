@@ -45,10 +45,6 @@ html, body {
 	text-align: center;
 }
 
-.cabecalho {
-	position: absolute;
-}
-
 .inicio {
 	position: absolute;
 	top: -6px;
@@ -71,6 +67,16 @@ html, body {
 	color: white;
 	padding: 16px 0;
 	list-style: none;
+}
+
+.inicio li a:hover{
+	text-shadow: 0px 0px 10px #ffffff;
+}
+
+.link1 {
+	text-decoration: none;
+	color:  #9d9c9c;
+	position: relative;
 }
 
 #div-reta {
@@ -128,6 +134,10 @@ html, body {
 	color: #ffffff;
 }
 
+.card-title:hover {
+	text-shadow: 0px 0px 10px #565050;
+}
+
 .escrito2 {
 	color: #97c9e8;
 	font-size: 30px;	
@@ -150,43 +160,25 @@ html, body {
 }
 
 #button {
-	position: absolute;
-	left: 150px;
-	border: 1px solid white;
-	border-radius: 15px;
-	width: 140px;
+	position: relative;
+	top: 10px;
+	font-size: 20px;
+	text-align: center;
+	width: 220px;
 	padding: 8px;
-	color: #e0e1ff;
-	font-size: 12px;
 }
 
 #button:hover {
-	border: 1px solid #9f9da1;
-	color: #9f9da1;
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	border-radius: 15px;
 }
-
-.button1 {
-	top: 370px;
-}
-
-.button2 {
-	top: 415px;
-}
-
-.button3 {
-	top: 460px;
-}
-
-.button4 {
-	top: 505px;
-}
-
 
 #button3 {
 	border: 1px solid white;
 	border-radius: 15px;
 	padding: 6px;
-	width: 50px;
+	width: 90px;
 	color: #e0e1ff;
 	font-size: 10px;
 	text-align: center;
@@ -195,6 +187,17 @@ html, body {
 #button3:hover {
 	border: 1px solid #9f9da1;
 	color: #9f9da1;
+}
+
+#button1 {
+	font-size: 15px;
+	width: 300px;
+	padding: 0px;
+	color: #9d9c9c;
+}	
+
+#button1:hover {
+	color: #ffffff;
 }
 
 .tabela {
@@ -207,16 +210,24 @@ html, body {
 
 .listagem { 
     color: white;
-    display: absolute;
+    display: absolute; 
 	background: black;
 	width: 1130px;
 	height: 500px;
-	margin-top: 60px;
+	margin-top: 30px;
 	margin-left: 50px;
 	position: absolute;
 	border-radius: 50px;
     left: 50px;
 	font-size: 15px;	
+}
+
+th:hover {
+	background: #141414;
+}
+
+td:hover {
+	background: #141414;
 }
 
 .cabTabela {
@@ -239,18 +250,8 @@ html, body {
 	outline: none;
 	color: #9f9da1;
 }
-  
-::file-selector-button {
-	font: inherit;
-	background: #111111;
-	color: #9f9da1;
-	border-color: white;
-	
-}
 
 .cardezinho {
-	width: 1130px;
-	height: 500px;
 	margin-top: 200px;
 	margin-left: 200px;
 	background: none;
@@ -278,4 +279,54 @@ html, body {
 	margin-top: 100px;
 	margin-left: 100px;
 	background: none;
+}
+
+.cadastrar {	
+	top: 25px;	
+	margin-left: 900px;
+	background: none;
+	position: absolute;
+	width: 240px;
+}
+
+.cadastrar:hover {
+	background: #ffffff;
+	height: 1.5px;
+	animation-duration: 0.8s;
+	animation-name: slidein;
+}
+
+@keyframes slidein {
+	from {
+		width: 0%;
+	}
+	
+	to {
+		width: 240px;
+	}
+}
+
+.cadastrarf {	
+	top: 25px;	
+	margin-left: 850px;
+	background: none;
+	position: absolute;
+	width: 280px;
+}
+
+.cadastrarf:hover {
+	background: #ffffff;
+	height: 1.5px;
+	animation-duration: 0.8s;
+	animation-name: slideinf;
+}
+
+@keyframes slideinf {
+	from {
+		width: 0px;
+	}
+	
+	to {
+		width: 280px;
+	}
 }
