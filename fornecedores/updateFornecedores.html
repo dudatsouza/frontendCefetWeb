@@ -12,130 +12,136 @@
 </head>
 
 <body>
-
-    <div id="cabecalho">
-        <div class="inicio">
-            <li><a href="../index.html">PROJETO</a></li>
-        </div>	
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>		
     
-        <div id="div-reta"></div>
-    
-        <div class = "start">
-            <span id="card-fornecedores"></span>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var id = url.searchParams.get("id_fornecedor");
+    <div id="div-reta"></div>
 
-                axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
-                    var card = '<div class="cardezinho-up card mb-3">';
-                            card += '<div class="row g-0">' +
-                                        '<div class="col-md-4">' +
-                                            `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
-                                        "</div>" +
-                                        '<div class="col-md-8">' +
-                                            `<div class="card-body">`;
-                                                card += `<div class="escrito1 card-title"><b>${res.data.razao}</b></div>`;
-                                                card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
-                                                card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
-                                    card += "</div>" +
-                                        "</div>" +
+    <div class = "start">
+        <span id="card-fornecedores"></span>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id_fornecedor");
+
+            axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
+                var card = '<div class="cardezinho-up card mb-3">';
+                    card += '<div class = "escrito2"><b>DADOS ATUAIS: </b></div><br>';
+                        card += '<div class="row g-0">' +
+                                    '<div class="col-md-4">' +
+                                        `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
                                     "</div>" +
-                                "</div>";
-                    document.getElementById(`card-fornecedores`).innerHTML = card;
-                })
+                                    '<div class="col-md-8">' +
+                                        `<div class="card-body">`;
+                                            card += `<div class="escrito1 card-title"><b>${res.data.razao}</b></div>`;
+                                            card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
+                                            card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
+                                card += "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+                document.getElementById(`card-fornecedores`).innerHTML = card;
+            })
 
-                function save(){
-                    var id_fornecedor = url.searchParams.get("id_fornecedor");
-                    var razao = document.getElementById("razao").value;
-                    var cpf_cnpj = document.getElementById("cpf_cnpj").value;
-                    var contato = document.getElementById("contato").value;
-                    var logradouro = document.getElementById("logradouro").value;
-                    var cidade = document.getElementById("cidade").value;
-                    var uf = document.getElementById("uf").value;
-                    const logomarca = document.querySelector('input[type="file"]');
+            function save(){
+                var id_fornecedor = url.searchParams.get("id_fornecedor");
+                var razao = document.getElementById("razao").value;
+                var cpf_cnpj = document.getElementById("cpf_cnpj").value;
+                var contato = document.getElementById("contato").value;
+                var logradouro = document.getElementById("logradouro").value;
+                var cidade = document.getElementById("cidade").value;
+                var uf = document.getElementById("uf").value;
+                const logomarca = document.querySelector('input[type="file"]');
 
-                    var formData = new FormData();
+                var formData = new FormData();
 
-                    formData.append('razao', razao.trim());
-                    formData.append('cpf_cnpj', cpf_cnpj.trim());
-                    formData.append('contato', contato.trim());
-                    formData.append('logradouro', logradouro.trim());
-                    formData.append('cidade', cidade.trim());
-                    formData.append('uf', uf.trim());
-                    if(logomarca.files.length > 0)
-                        formData.append('logomarca', logomarca.files[0]);
+                formData.append('razao', razao.trim());
+                formData.append('cpf_cnpj', cpf_cnpj.trim());
+                formData.append('contato', contato.trim());
+                formData.append('logradouro', logradouro.trim());
+                formData.append('cidade', cidade.trim());
+                formData.append('uf', uf.trim());
+                if(logomarca.files.length > 0)
+                    formData.append('logomarca', logomarca.files[0]);
 
-                    axios.post(`http://localhost:3010/fornecedor_up/` + id_fornecedor, formData, 
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                axios.post(`http://localhost:3010/fornecedor_up/` + id_fornecedor, formData, 
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
-                    ).then(res => {
-                        window.location.href = `perfilFornecedores.html?id_fornecedor=${id_fornecedor}`;
-                        alert('Fornecedor alterado com sucesso!')
-                    }).catch(err => {
-                        console.log(err)
-                    })
                 }
-            </script>
+                ).then(res => {
+                    window.location.href = `perfilFornecedores.html?id_fornecedor=${id_fornecedor}`;
+                    alert('Fornecedor alterado com sucesso!')
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        </script>
 
-            <div class="formulario-up">
-                <div class = "escrito1"><b>ATUALIZAR FORNECEDOR</b></div>
-                    <form enctype="multipart/form-data" method="POST" >
-                        <div id="inputs" class="col-auto"> 
-                            <label for="razao" class="form-label">Razão: </label> 
-                            <input required type="text" name="razao" class="inputUser" id="razao" placeholder="...">
-                        </div>
-                        <br>
-    
-                        <div id="inputs" class="col-auto">
-                            <label for="cpf_cnpj" class="form-label">CPF ou CNPJ: </label> 
-                            <input required type="text" name="cpf_cnpj" class="inputUser" id="cpf_cnpj" placeholder="...">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="contato" class="form-label">Contato: </label> 
-                            <input required type="text" name="contato" class="inputUser" id="contato" placeholder="...">
-                        </div>
-                        <br>
-    
-                        <div id="inputs" class="col-auto">
-                            <label for="logradouro" class="form-label">Logradouro: </label> 
-                            <input required type="text" name="logradouro" class="inputUser" id="logradouro" placeholder="...">
-                        </div>
-                        <br>
-    
-                        <div id="inputs" class="col-auto">
-                            <label for="cidade" class="form-label">Cidade: </label> 
-                            <input required type="text" name="cidade" class="inputUser" id="cidade" placeholder="...">
-                        </div>
-                        <br>
-    
-                        <div id="inputs" class="col-auto">
-                            <label for="uf" class="form-label">UF: </label> 
-                            <input required type="text" name="uf" class="inputUser" id="uf" placeholder= "...">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="logomarca" class="form-lael">Logomarca: </label> 
-                            <input class="avatar" name="logomarca" type="file" id="logomarca">
-                        </div> 
-                        <br>
-
-                        <div id="botao-enviar" class="col-auto"> 
-                            <button type="button" onclick="save()" name="enviar" class="inputUser1">Alterar</button>
-                        </div>
-                    </form>
+        <div class="formulario-up">
+            <div class = "escrito1"><b>ATUALIZAR</b></div>
+                <form enctype="multipart/form-data" method="POST" >
+                    <div id="inputs" class="col-auto"> 
+                        <label for="razao" class="form-label">Razão: </label> 
+                        <input required type="text" name="razao" class="inputUser" id="razao" placeholder="...">
+                    </div>
                     <br>
-                </div>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="cpf_cnpj" class="form-label">CPF ou CNPJ: </label> 
+                        <input required type="text" name="cpf_cnpj" class="inputUser" id="cpf_cnpj" placeholder="...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="contato" class="form-label">Contato: </label> 
+                        <input required type="text" name="contato" class="inputUser" id="contato" placeholder="...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="logradouro" class="form-label">Logradouro: </label> 
+                        <input required type="text" name="logradouro" class="inputUser" id="logradouro" placeholder="...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="cidade" class="form-label">Cidade: </label> 
+                        <input required type="text" name="cidade" class="inputUser" id="cidade" placeholder="...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="uf" class="form-label">UF: </label> 
+                        <input required type="text" name="uf" class="inputUser" id="uf" placeholder= "...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="logomarca" class="logomarca">Logomarca: 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            </svg>
+                        </label>
+                        <input class="avatar" name="logomarca" type="file" id="logomarca">
+
+                                        
+
+                    </div> 
+                    <br>
+
+                    <div id="botao-enviar" class="col-auto"> 
+                        <button type="button" onclick="save()" name="enviar" class="inputUser1">Alterar</button>
+                    </div>
+                </form>
+                <br>
             </div>
         </div>
     </div>

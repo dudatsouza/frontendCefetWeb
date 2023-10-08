@@ -10,46 +10,42 @@
     <script src='../main.js'></script>
     <title>Perfil do Cliente</title>
 </head>
-
 <body>
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>	
 
-    <div id="cabecalho">
-            <div class="inicio">
-                <li><a href="../index.html">PROJETO</a></li>
-            </div>	
-    
-        <div id="div-reta"></div>
-    
-        <div class = "start">
-            <span id="card-clientes"></span>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var id = url.searchParams.get("id_cliente");
-                
-                axios.get(`http://localhost:3010/cliente/${+id}`).then(res => {
-                    var card = '<div class="cardezinho card mb-3">';
-                            card += '<div class="row g-0">' +
-                                        '<div class="col-md-4">' +
-                                            `<img src="http://localhost:3010/clientes/${+id}.png" class="img-fluid rounded-start">` +         
-                                        "</div>" +
-                                        '<div class="col-md-8">' +
-                                            `<div class="card-body">`;
-                                                card += `<div class="escrito1 card-title"><b>${res.data.nome} ${res.data.sobrenome}</b>`;
-                                                card += `<div class="escrito2 card-text">Email: <div class="escrito3 card-text">${res.data.email}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Salario: <div class="escrito3 card-text">${res.data.salario}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Data de Cadastro: <div class="escrito3 card-text">${res.data.data_cadastro}</div></div>`;
-                                    card += "</div>" +
-                                        "</div>" +
+    <div id="div-reta"></div>
+
+    <div class = "start">
+        <span id="card-clientes"></span>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id_cliente");
+            
+            axios.get(`http://localhost:3010/cliente/${+id}`).then(res => {
+                var card = '<div class="cardezinho card mb-3">';
+                    card += '<div class = "escrito1"><b>DADOS DO CLIENTE: </b></div><br><br>';
+                        card += '<div class="row g-0">' +
+                                    '<div class="col-md-4">' +
+                                        `<img src="http://localhost:3010/clientes/${+id}.png" class="img-fluid rounded-start">` +         
                                     "</div>" +
-                                "</div>";
-                    document.getElementById(`card-clientes`).innerHTML = card;
-                })
-            </script>
-        </div>
+                                    '<div class="col-md-8">' +
+                                        `<div class="card-body">`;
+                                            card += `<div class="escrito1 card-title"><b>${res.data.nome} ${res.data.sobrenome}</b>`;
+                                            card += `<div class="escrito2 card-text">Email: <div class="escrito3 card-text">${res.data.email}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Salario: <div class="escrito3 card-text">${res.data.salario}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Data de Cadastro: <div class="escrito3 card-text">${res.data.data_cadastro}</div></div>`;
+                                card += "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+                document.getElementById(`card-clientes`).innerHTML = card;
+            })
+        </script>
     </div>
-
 
 </body>
 

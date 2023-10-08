@@ -12,118 +12,121 @@
 </head>
 
 <body>
-
-    <div id="cabecalho">
-        <div class="inicio">
-            <li><a href="../index.html">PROJETO</a></li>
-        </div>	
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>	
     
-        <div id="div-reta"></div>
-    
-        <div class = "start">
-            <span id="card-clientes"></span>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var id = url.searchParams.get("id_cliente");
+    <div id="div-reta"></div>
 
-                axios.get(`http://localhost:3010/cliente/${+id}`).then(res => {
-                    var card = '<div class="cardezinho-up card mb-3">';
-                            card += '<div class="row g-0">' +
-                                        '<div class="col-md-4">' +
-                                            `<img src="http://localhost:3010/clientes/${+id}.png" class="img-fluid rounded-start">` +         
-                                        "</div>" +
-                                        '<div class="col-md-8">' +
-                                            `<div class="card-body">`;
-                                                card += `<div class="escrito1 card-title"><b>${res.data.nome} ${res.data.sobrenome}</b>`;
-                                                card += `<div class="escrito2 card-text">Email: <div class="escrito3 card-text">${res.data.email}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Salario: <div class="escrito3 card-text">${res.data.salario}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Data de Cadastro: <div class="escrito3 card-text">${res.data.data_cadastro}</div></div>`;
-                                            card += "</div>" +
-                                        "</div>" +
+    <div class = "start">
+        <span id="card-clientes"></span>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id_cliente");
+
+            axios.get(`http://localhost:3010/cliente/${+id}`).then(res => {
+                var card = '<div class="cardezinho-up card mb-3">';
+                    card += '<div class = "escrito2"><b>DADOS DO FORNECEDOR: </b></div><br><br>';
+                        card += '<div class="row g-0">' +
+                                    '<div class="col-md-4">' +
+                                        `<img src="http://localhost:3010/clientes/${+id}.png" class="img-fluid rounded-start">` +         
                                     "</div>" +
-                                "</div>";
-                    document.getElementById(`card-clientes`).innerHTML = card;
-                })
+                                    '<div class="col-md-8">' +
+                                        `<div class="card-body">`;
+                                            card += `<div class="escrito1 card-title"><b>${res.data.nome} ${res.data.sobrenome}</b>`;
+                                            card += `<div class="escrito2 card-text">Email: <div class="escrito3 card-text">${res.data.email}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Salario: <div class="escrito3 card-text">${res.data.salario}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Data de Cadastro: <div class="escrito3 card-text">${res.data.data_cadastro}</div></div>`;
+                                        card += "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+                document.getElementById(`card-clientes`).innerHTML = card;
+            })
 
-                function save(){
-                    var id_cliente = url.searchParams.get("id_cliente");
-                    var nome = document.getElementById("nome").value;
-                    var sobrenome = document.getElementById("sobrenome").value;
-                    var email = document.getElementById("email").value;
-                    var salario = document.getElementById("salario").value;
-                    const avatar = document.querySelector('input[type="file"]');
+            function save(){
+                var id_cliente = url.searchParams.get("id_cliente");
+                var nome = document.getElementById("nome").value;
+                var sobrenome = document.getElementById("sobrenome").value;
+                var email = document.getElementById("email").value;
+                var salario = document.getElementById("salario").value;
+                const avatar = document.querySelector('input[type="file"]');
 
-                    var formData = new FormData();
+                var formData = new FormData();
 
-                    formData.append('nome', nome.trim());
-                    formData.append('sobrenome', sobrenome.trim());
-                    formData.append('email', email.toLowerCase().trim());
-                    formData.append('salario', +salario);
-                    if(avatar.files.length > 0)
-                        formData.append('avatar', avatar.files[0]);
+                formData.append('nome', nome.trim());
+                formData.append('sobrenome', sobrenome.trim());
+                formData.append('email', email.toLowerCase().trim());
+                formData.append('salario', +salario);
+                if(avatar.files.length > 0)
+                    formData.append('avatar', avatar.files[0]);
 
-                    axios.post(`http://localhost:3010/cliente_up/` + id_cliente, formData, 
-                    {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                axios.post(`http://localhost:3010/cliente_up/` + id_cliente, formData, 
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
                     }
-                    ).then(res => {
-                        window.location.href = `perfilClientes.html?id_cliente=${id_cliente}`;
-                        alert('Cliente alterado com sucesso!')
-                    }).catch(err => {
-                        console.log(err)
-                    })
                 }
-            </script>
+                ).then(res => {
+                    window.location.href = `perfilClientes.html?id_cliente=${id_cliente}`;
+                    alert('Cliente alterado com sucesso!')
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+        </script>
 
-            <div class="formulario-up">
-                <div class = "escrito1"><b>ATUALIZAR CLIENTE</b></div>
-                    <form enctype="multipart/form-data" method="POST" >
-                        <div id="inputs" class="col-auto"> 
-                            <label for="nome" class="form-label">Primeiro nome: </label> 
-                            <input required type="text" name="nome" class="inputUser" id="nome" placeholder="...">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="sobrenome" class="form-label">Sobrenome: </label> 
-                            <input required type="text" name="sobrenome" class="inputUser" id="sobrenome" placeholder="...">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="email" class="form-label">Email: </label> 
-                            <input required type="email" name="email" class="inputUser" id="email" placeholder="@example.com ">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="salario" class="form-label">Salário: </label> 
-                            <input required min="1" type="number" name="salario" class="inputUser" id="salario" placeholder="Seu salário...">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="senha" class="form-label">Senha: </label> 
-                            <input required type="password" name="senha" class="inputUser" id="senha" placeholder= "R$   .00">
-                        </div>
-                        <br>
-
-                        <div id="inputs" class="col-auto">
-                            <label for="avatar" class="form-lael">Foto de Perfil: </label> 
-                            <input class="avatar" name="avatar" type="file" id="avatar">
-                        </div> 
-                        <br>
-
-                        <div id="botao-enviar" class="col-auto"> 
-                            <button type="button" onclick="save()" name="enviar" class="inputUser1">Alterar</button>
-                        </div>
-                    </form>
+        <div class="formulario-up">
+            <div class = "escrito1"><b>ATUALIZAR</b></div>
+                <form enctype="multipart/form-data" method="POST" >
+                    <div id="inputs" class="col-auto"> 
+                        <label for="nome" class="form-label">Primeiro nome: </label> 
+                        <input required type="text" name="nome" class="inputUser" id="nome" placeholder="...">
+                    </div>
                     <br>
-                </div>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="sobrenome" class="form-label">Sobrenome: </label> 
+                        <input required type="text" name="sobrenome" class="inputUser" id="sobrenome" placeholder="...">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="email" class="form-label">Email: </label> 
+                        <input required type="email" name="email" class="inputUser" id="email" placeholder="@example.com ">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="salario" class="form-label">Salário: </label> 
+                        <input required min="1" type="number" name="salario" class="inputUser" id="salario" placeholder="R$   .00">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="senha" class="form-label">Senha: </label> 
+                        <input required type="password" name="senha" class="inputUser" id="senha" placeholder= "***">
+                    </div>
+                    <br>
+
+                    <div id="inputs" class="col-auto">
+                        <label for="avatar" class="form-lael">Foto de Perfil: 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            </svg>
+                        </label> 
+                        <input class="avatar" name="avatar" type="file" id="avatar">
+                    </div> 
+                    <br>
+
+                    <div id="botao-enviar" class="col-auto"> 
+                        <button type="button" onclick="save()" name="enviar" class="inputUser1">Alterar</button>
+                    </div>
+                </form>
+                <br>
             </div>
         </div>
     </div>
@@ -143,7 +146,6 @@
         document.getElementById("email").value = email;
         document.getElementById("salario").value = salario;
     </script>
-
 
 </body>
 

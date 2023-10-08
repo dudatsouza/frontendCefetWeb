@@ -18,10 +18,46 @@
 
     <div id="div-reta"></div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+    function save() {      
+        var nome = document.getElementById("nome").value;
+        var sobrenome = document.getElementById("sobrenome").value;
+        var email = document.getElementById("email").value;
+        var salario = document.getElementById("salario").value;
+        const avatar = document.querySelector('input[type="file"]');
+
+        var formData = new FormData();
+
+        formData.append('nome', nome.trim());
+        formData.append('sobrenome', sobrenome.trim());
+        formData.append('email', email.toLowerCase().trim());
+        formData.append('salario', +salario);
+
+        if(avatar.files.length > 0)
+            formData.append('avatar', avatar.files[0]);
+
+        axios.post(`http://localhost:3010/cliente` , formData,
+        {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        ).then(res => {
+            alert('Cliente cadastrado com sucesso!');
+            window.location.href = "listarClientes.html"
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    </script>
+
     <div class = "start">
         <div class="formulario">
             <div class = "escrito1"><b>CADASTRAR CLIENTE</b></div>
-                <form enctype="multipart/form-data" method="POST" action="http://localhost:3010/cliente">
+                <form enctype="multipart/form-data" method="POST" >
+                    
                     <div id="inputs" class="col-auto"> 
                         <label for="nome" class="form-label">Primeiro nome: </label> 
                         <input required type="text" name="nome" class="inputUser" id="nome" placeholder="...">
@@ -42,24 +78,29 @@
 
                     <div id="inputs" class="col-auto">
                         <label for="salario" class="form-label">Salário: </label> 
-                        <input required min="1" type="number" name="salario" class="inputUser" id="salario" placeholder="Seu salário...">
+                        <input required min="1" type="number" name="salario" class="inputUser" id="salario" placeholder="R$   .00">
                     </div>
                     <br>
 
                     <div id="inputs" class="col-auto">
                         <label for="senha" class="form-label">Senha: </label> 
-                        <input required type="password" name="senha" class="inputUser" id="senha" placeholder= "R$   .00">
+                        <input required type="password" name="senha" class="inputUser" id="senha" placeholder= "***">
                     </div>
                     <br>
 
                     <div id="inputs" class="col-auto">
-                        <label for="avatar" class="form-lael">Foto de Perfil: </label> 
+                        <label for="avatar" class="form-lael">Foto de Perfil: 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            </svg>
+                        </label> 
                         <input class="avatar" name="avatar" type="file" id="avatar">
                     </div> 
                     <br>
 
                     <div id="botao-enviar" class="col-auto"> 
-                        <button type="submit" class="inputUser1">Enviar</button>
+                        <button type="button" onclick="save()" name="enviar" class="inputUser1">Enviar</button>
                     </div>                        
 
                 </form>

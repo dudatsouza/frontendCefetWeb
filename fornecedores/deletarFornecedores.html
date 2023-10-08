@@ -12,62 +12,56 @@
 </head>
 
 <body>
-
-    <div id="cabecalho">
-        <div class="inicio">
-            <li><a href="../index.html">PROJETO</a></li>
-        </div>	
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>		
     
-        <div id="div-reta"></div>fornecedores
-    
-        <div class = "start">
-            <span id="card-fornecedores"></span>
-            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            <script>
-                var url_string = window.location.href;
-                var url = new URL(url_string);
-                var id = url.searchParams.get("id_fornecedor");
+    <div id="div-reta"></div>
 
-                var deletarFornecedor = url.searchParams.get("delete");
+    <div class = "start">
+        <span id="card-fornecedores"></span>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            var id = url.searchParams.get("id_fornecedor");
 
-                console.log("Delete", deletarFornecedor)
-                if(deletarFornecedor && deletarFornecedor === "ok"){
-                    axios.post("http://localhost:3010/fornecedor_del/" + id)
-                    .then(res => {
-                        alert("Fornecedor Apagado com sucesso!")
-                        window.location.href = "listarFornecedores.html"
-                    })
-                }
+            var deletarFornecedor = url.searchParams.get("delete");
 
-                else {
-                    axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
-                    var card = '<div class="cardezinho card mb-3">';
-                            card += '<div class="row g-0">' +
-                                        '<div class="col-md-4">' +
-                                            `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
-                                        "</div>" +
-                                        '<div class="col-md-8">' +
-                                            `<div class="card-body">`;
-                                                card += `<div class="escrito1 card-title"><b>${res.data.razao}</b>`;
-                                                card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
-                                                card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
-                                                card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
-                                                card += `<a href="deletarfornecedores.html?id_Fornecedor=${id}&delete=ok" id="button3" list-group-item list-group-item-action active>Deletar</a>`;
-                                    card += "</div>" +
-                                        "</div>" +
-                                    "</div>" +
-                                "</div>";
-                    document.getElementById(`card-fornecedores`).innerHTML = card;
+            console.log("Delete", deletarFornecedor)
+            if(deletarFornecedor && deletarFornecedor === "ok"){
+                axios.post("http://localhost:3010/fornecedor_del/" + id)
+                .then(res => {
+                    alert("Fornecedor Apagado com sucesso!")
+                    window.location.href = "listarFornecedores.html"
                 })
-                }
-            </script>
-        </div>
+            }
 
-        
-
-
+            else {
+                axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
+                var card = '<div class="cardezinho card mb-3">';
+                    card += '<div class = "escrito1"><b>DADOS DO FORNECEDOR: </b></div><br><br>';
+                        card += '<div class="row g-0">' +
+                                    '<div class="col-md-4">' +
+                                        `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
+                                    "</div>" +
+                                    '<div class="col-md-8">' +
+                                        `<div class="card-body">`;
+                                            card += `<div class="escrito1 card-title"><b>${res.data.razao}</b>`;
+                                            card += `<div class="escrito2 card-text">CPF ou CNPJ: <div class="escrito3 card-text">${res.data.cpf_cnpj}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Contato: <div class="escrito3 card-text">${res.data.contato}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Logradouro: <div class="escrito3 card-text">${res.data.logradouro}</div></div>`;
+                                            card += `<div class="escrito2 card-text">Cidade: <div class="escrito3 card-text">${res.data.cidade}</div></div>`;
+                                            card += `<div class="escrito2 card-text">UF: <div class="escrito3 card-text">${res.data.uf}</div></div>`;
+                                            card += `<a href="deletarfornecedores.html?id_Fornecedor=${id}&delete=ok"  id="buttonD">Deletar</a>`;
+                                card += "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
+                document.getElementById(`card-fornecedores`).innerHTML = card;
+            })
+            }
+        </script>
     </div>
 
 </body>

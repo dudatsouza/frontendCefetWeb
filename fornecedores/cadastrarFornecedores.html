@@ -12,12 +12,51 @@
 </head>
 
 <body>
-    <div id="cabecalho">
-        <div class="inicio">
-            <li><a href="../index.html">PROJETO</a></li>
-        </div>	
+    <div class="inicio">
+        <li><a href="../index.html">PROJETO</a></li>
+    </div>		
 
     <div id="div-reta"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function save() {      
+            var razao = document.getElementById("razao").value;
+            var cpf_cnpj = document.getElementById("cpf_cnpj").value;
+            var contato = document.getElementById("contato").value;
+            var logradouro = document.getElementById("logradouro").value;
+            var cidade = document.getElementById("cidade").value;
+            var uf = document.getElementById("uf").value;
+            const logomarca = document.querySelector('input[type="file"]');
+
+            var formData = new FormData();
+
+            formData.append('razao', razao.trim());
+            formData.append('cpf_cnpj', cpf_cnpj.trim());   
+            formData.append('contato', contato.trim());
+            formData.append('logradouro', logradouro.trim());
+            formData.append('cidade', cidade.trim());
+            formData.append('uf', uf.trim());
+
+            if(logomarca.files.length > 0)
+                formData.append('logomarca', logomarca.files[0]);
+
+            axios.post(`http://localhost:3010/fornecedor` , formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+            ).then(res => {
+                alert('Fornecedor cadastrado com sucesso!');
+                window.location.href = "listarFornecedores.html"
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+    </script>
+
 
     <div class = "start">
         <div class="formulario">
@@ -60,21 +99,23 @@
                     <br>
 
                     <div id="inputs" class="col-auto">
-                        <label for="logomarca" class="form-lael">Logomarca: </label> 
+                        <label for="logomarca" class="form-lael">Logomarca: 
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+                                <path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                            </svg>
+                        </label> 
                         <input class="avatar" name="logomarca" type="file" id="logomarca">
                     </div> 
                     <br>
 
                     <div id="botao-enviar" class="col-auto"> 
-                        <button type="submit" class="inputUser1">Enviar</button>
+                        <button type="button" onclick="save()" name="enviar" class="inputUser1">Enviar</button>
                     </div>
                 </form>
             <br>
         </div>
-    </div>
-</div>
-
-    
+    </div>    
 
 </body>
 

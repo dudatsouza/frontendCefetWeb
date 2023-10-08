@@ -11,21 +11,13 @@ html, body {
     color: white;
     display: absolute;
 	background: none;
-	width: 1130px;
-	height: 500px;
 	margin-top: 100px;
-	margin-left: 100px;
-	position: absolute;
+	margin-left: 250px;
 	border-radius: 50px;
 	color: #e0e1ff;
     left: 50px;
 	top: 30px;
 	font-size: 15px;	
-}
-  
-.formulario1 {
-    color: #ffffff;
-    font-size: 12px;
 }
 
 .inputUser {
@@ -200,6 +192,24 @@ html, body {
 	color: #ffffff;
 }
 
+#buttonD {
+	text-decoration: none;
+	border: 1px solid white;
+	border-radius: 15px;
+	padding: 6px;
+	width: 90px;
+	color: #e0e1ff;
+	font-size: 10px;
+	text-align: center;
+	font-size: 20px;
+
+}
+
+#buttonD:hover {
+	border: 1px solid #d11414;
+	color: #d11414;
+}
+
 .tabela {
     --bs-table-color: #fff;
     --bs-table-bg: #000000;
@@ -236,35 +246,29 @@ td:hover {
 }
 
 .avatar  {	
-	background-color: transparent;
 	border: none;
 	border-bottom: 1px solid white;
 	outline: none;
 	color: #9f9da1;
+	width: 200px;
 }
 
-.logomarca  {	
-	background-color: transparent;
-	border: none;
-	border-bottom: 1px solid white;
-	outline: none;
-	color: #9f9da1;
+::file-selector-button {
+	display: none;
 }
 
 .cardezinho {
-	margin-top: 200px;
+	width: 1000px;
+	margin-top: 50px;
 	margin-left: 200px;
 	background: none;
 }
 
 .formulario-up {
     color: white;
-    display: absolute;
 	background: none;
-	width: 1130px;
-	height: 500px;
 	margin-top: 50px;
-	margin-left: 700px;
+	margin-left: 150px;
 	position: absolute;
 	border-radius: 50px;
 	color: #e0e1ff;
@@ -274,10 +278,9 @@ td:hover {
 }
 
 .cardezinho-up {
-	width: 700px;
-	height: 300px;
+	width: 550px;
 	margin-top: 100px;
-	margin-left: 100px;
+	margin-left: 750PX;
 	background: none;
 }
 

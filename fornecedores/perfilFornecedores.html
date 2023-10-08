@@ -29,6 +29,7 @@
             
             axios.get(`http://localhost:3010/fornecedor/${+id}`).then(res => {
                 var card = '<div class="cardezinho card mb-3">';
+                    card += '<div class = "escrito1"><b>DADOS DO FORNECEDOR: </b></div><br><br>';
                         card += '<div class="row g-0">' +
                                     '<div class="col-md-4">' +
                                         `<img src="http://localhost:3010/fornecedores/${+id}.png" class="img-fluid rounded-start">` +         
